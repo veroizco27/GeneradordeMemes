@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0ca0e55b9a.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Generador de Memes</title>
+</head>
+
+<body>
+    <header class="dark-header">
+        <h1>Generador de Memes</h1>
+        <nav>
+            <button class="image"><i class="fas fa-file-image"></i>Imagen</button>
+            <button class="text"><i class="fas fa-font" aria-label="Menu Texto"></i>Texto</button>
+            <button class="dark-mode"><i class="far fa-lightbulb" aria-label="Activa el modo claro u oscuro"></i>Modo
+                claro</button>
+        </nav>
+    </header>
+    <main class="dark-main">
+
+        <section id="container-global">
+            <div class="container-meme" id="meme-container">
+                <p class="container-text-top" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">TOP TEXT</p>
+                <div class="meme-image" id="image-meme"></div>
+                <p class="container-text-bottom" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">BOTTOM TEXT</p>
+            </div>
+            <div class="container-btn-download">
+                <button class="button-download" id="download-meme" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><i class="fas fa-download"></i> Descargar tu
+                    meme</button>
+            </div>
+        </section>
+
+
+        <aside class="edit-image">
+            <form class="form-edit-image">
+                <h2>IMAGEN</h2>
+                <label for="url" id="label-url">URL
+                    <input type="text" id="url-input" name="url" aria-label="Url de imágen">
+                </label>
+                <h3>FONDO</h3>
+                <div>
+                    <div class="container-color-fondo">
+                        <input type="color" class="color-rounded" id="color-background-image" value="#FFFFFF"
+                            aria-label="Selecciona color de fondo">
+                        <span class="text-color">#FFFFFF</span>
+                    </div>
+                    <select class="options-background-image">
+                        <option value="ninguno">Ninguno</option>
+                        <option value="aclarar">Aclarar</option>
+                        <option value="oscurecer">Oscurecer</option>
+                        <option value="diferencia">Diferencia</option>
+                        <option value="luminosidad">Luminosidad</option>
+                        <option value="multiplicar">Multiplicar</option>
+                    </select>
+                </div>
+                <h3>FILTROS</h3>
+                <label for="range-bright" id="label-bright" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">BRILLO
+                    <input type="range" id="range-bright" min="0" max="1" step="0.1" value="1">
+                </label>
+                <label for="range-opacity" id="label-opacity" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">OPACIDAD
+                    <input type="range" id="range-opacity" min="0" max="1" step="0.1" value="1">
+                </label>
+                <label for="range-contrast" id="label-contrast" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">CONTRASTE
+                    <input type="range" id="range-contrast" min="100" max="1000" step="1" value="100">
+                </label>
+                <label for="range-blur" id="label-blur" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">DESENFOQUE
+                    <input type="range" id="range-blur" min="0" max="10" step="0.1" value="0">
+                </label>
+                <label for="range-grayscale" id="label-grayscale" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">ESCALA DE GRISES
+                    <input type="range" id="range-grayscale" min="0" max="100" step="1" value="0">
+                </label>
+                <label for="range-sepia" id="label-sepia" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">SEPIA
+                    <input type="range" id="range-sepia" min="0" max="100" step="1" value="0">
+                </label>
+                <label for="range-hue" id="label-hue" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">HUE
+                    <input type="range" id="range-hue" min="0" max="360" step="1" value="0">
+                </label>
+                <label for="range-saturation" id="label-saturation" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">SATURADO
+                    <input type="range" id="range-saturation" min="100" max="1000" step="10" value="100">
+                </label>
+                <label for="range-invert" id="label-invert" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">NEGATIVO
+                    <input type="range" id="range-invert" min="0" max="1" step="0.1" value="0">
+                </label>
+                <button class="button-default" aria-level="reestablecer filtros" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Reestablecer filtros</button>
+            </form>
+        </aside>
+        <aside class="edit-text hidden">
+            <form class="form-edit-text">
+                <h2>TEXTO</h2>
+                <div class="edit-text-top">
+                    <h3>SUPERIOR</h3>
+                    <textarea name="text" id="text-top" cols="10" rows="1"
+                        aria-label="Escribir texto superior">TOP TEXT</textarea>
+                    <label for="no-top-text" id="label-checkbox-top">
+                        <input type="checkbox" id="no-top-text">
+                        Sin texto superior
+                    </label>
+                </div>
+                <div class="edit-buttom-text">
+                    <h3>INFERIOR</h3>
+                    <textarea name="text" id="bottom-text" cols="10" rows="1"
+                        aria-label="Escribir texto inferior">BOTTOM TEXT</textarea>
+                    <label for="no-bottom-text" id="label-checkbox-bottom">
+                        <input type="checkbox" id="no-bottom-text">
+                        Sin texto inferior
+                    </label>
+                </div>
+                <h3>FUENTE</h3>
+                <select name="font" id="font-types" aria-label="Seleccionar tipo de fuentes">
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="American Typewriter">American Typewriter</option>
+                    <option value="Andale Mono">Andale Mono</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <div class="letter-size">
+                    <input type="number" id="letter-size" min="12" value="40" aria-label="Tamaño de letra">
+                    <div class="alignment">
+                        <button id="left-button" aria-label="Alinear texto a la izquierda"><i
+                                class="fas fa-align-left"></i></button>
+                        <button id="center-button" aria-label="Centrar texto"><i
+                                class="fas fa-align-center"></i></button>
+                        <button id="right-button" aria-label="Alinear texto a la derecha"><i
+                                class="fas fa-align-right"></i></button>
+                    </div>
+                </div>
+                <div class="color-and-background">
+                    <div class="color">
+                        <h3 id="titulo-color">COLOR</h3>
+                        <div class="container-input-color-background-text">
+                            <input name="Color de texto" type="color" id="input-color-text" value="#000000"
+                                aria-label="Color de texto">
+                            <span class="span-color-text" aria-hidden="true">#000000</span>
+                        </div>
+                    </div>
+                    <div class="background">
+                        <h3 id="title-background">FONDO</h3>
+                        <div class="container-input-color-backgrounds-text">
+                            <input name="Color de fondo" type="color" id="input-color-background" value="#FFFFFF"
+                                aria-label="Color de fondo">
+                            <span class="span-background-text" aria-hidden="true">#FFFFFF</span>
+                        </div>
+                    </div>
+                </div>
+                <label for="transparent-background" id="label-checkbox-transparent-background">
+                    <input type="checkbox" id="transparent-background">
+                    Fondo transparente
+                </label>
+                <div class="types-outline">
+                    <h3 id="title-outline">CONTORNO</h3>
+                </div>
+                <div class="button-container">
+                    <button id="none">Ninguno</button>
+                    <button id="clear">Claro</button>
+                    <button id="dark">Oscuro</button>
+                </div>
+                <label for="spacing">
+                    <h3 id="title-spacing">ESPACIO</h3>
+                    <input type="number" id="spacing" min="10" max="50" value="0">
+                </label>
+                <label for="leading">
+                    <h3 id="title-leading">INTERLINEADO</h3>
+                    <select name="interlineado" id="leading" min="0.5" max="2.5">
+                        <option value="0.8">0.8</option>
+                        <option value="1">1</option>
+                        <option value="1.2">1.2</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                    </select>
+                </label>
+            </form>
+        </aside>
+    </main>
+
+
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
