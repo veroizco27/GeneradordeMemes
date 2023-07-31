@@ -1,16 +1,16 @@
-/* BOTONES DEL NAV */
+// botones del nav
 const buttonImage = document.querySelector(".image");
 
 const buttonText = document.querySelector(".text");
 
 const buttonMode = document.querySelector(".dark-mode");
 
-/* SELECCIÓN DE LOS ASIDE DE IMAGEN Y TEXTO */
+// para seleccionar aside imagen y texto
 const asideEditImage = document.querySelector(".edit-image");
 
 const asideEditText = document.querySelector(".edit-text");
 
-/* FUNCION PARA QUE SE ABRAN LOS ASIDE */
+// funcion para abrir aside
 const openAsideEditText = () => {
   asideEditImage.classList.add("hidden");
   asideEditText.classList.remove("hidden");
@@ -24,7 +24,7 @@ const openAsideEditImage = () => {
 };
 buttonImage.onclick = openAsideEditImage;
 
-/* FUNCION PARA CAMBIAR MODO CLARO Y OSCURO */
+//para cambiar modos
 const header = document.querySelector(".dark-header");
 const main = document.querySelector(".dark-main");
 const asideImage = document.querySelector(".edit-image");
@@ -58,9 +58,9 @@ const changeButtonMode = () => {
 
 buttonMode.addEventListener("click", changeButtonMode);
 
-/* ....FUNCIONES PARA APLICAR AL FORMULARIO IMAGEN.... */
+//para aplicar al formulario imagen
 
-/* RUTA DEL URL */
+// url 
 
 const urlInput = document.getElementById("url-input");
 const memeImg = document.getElementById("image-meme");
@@ -71,16 +71,14 @@ const changeBackground = () => {
   memeImg.style.backgroundImage = `url('${urlInput.value}')`;
 };
 
-/* BOTON COLOR Y TEXTO  FONDO */
-/*etiqueta img*/
-// let memeImage = document.getElementById("image-meme");
-/*en esta variable me voy a guardar el fondo que seleccione el usuario*/
+// buton color y texto fondos 
+
 let selectToBackground = "";
-/*input de color*/
+//input de colores
 let inputColor = document.getElementById("color-background-image");
-/*span con nombre de color*/
+//span con nombre de color
 let textoColorFondo = document.querySelector(".text-color");
-/*select que contiene las opciones */
+//select con las opciones
 const elementSelector = document.querySelector(".options-background-image");
 
 let aplicarFiltro = () => {
@@ -97,7 +95,7 @@ inputColor.addEventListener("input", colorPicker);
 
 
 
-/* SELECTOR FILTROS DE FONDO */
+// opcion filtros y fondo
 const selectionUsuario = (event) => {
   if (event.target.value === "aclarar") {
     selectToBackground = "lighten";
@@ -117,7 +115,7 @@ const selectionUsuario = (event) => {
 
 elementSelector.addEventListener("change", selectionUsuario);
 
-/*INPUT DE FILTROS*/
+// input de filtros
 const brightInput = document.getElementById("range-bright");
 const opacityInput = document.getElementById("range-opacity");
 const contrastInput = document.getElementById("range-contrast");
@@ -142,7 +140,7 @@ hueInput.addEventListener("input", () => filtros());
 saturateInput.addEventListener("input", () => filtros());
 invertInput.addEventListener("input", () => filtros());
 
-//BOTON REESTABLECER FILTROS
+// boton para restablecer filtros
 
 const botonFilters = document.querySelector(".button-default");
 
@@ -162,7 +160,7 @@ botonFilters.onclick = (event) => {
   memeImg.style.filter = "none";
 };
 
-// DESCARGAR MEME
+// funcion para descarar meme
 
 const downloadButton = document.getElementById("download-meme");
 const meme = document.getElementById("meme-container");
@@ -175,7 +173,7 @@ const downloadMeme = () => {
 
 downloadButton.addEventListener("click", () => downloadMeme());
 
-/* Formulario texto */
+// Formulario texto 
 const topTextUser = document.getElementById("text-top");
 const bottomTextUser = document.getElementById("bottom-text");
 const topText = document.querySelector(".container-text-top");
@@ -188,7 +186,7 @@ bottomTextUser.oninput = () => {
   bottomText.textContent = bottomTextUser.value;
 };
 
-//ELIMINAR TEXTO SUPERIOR-INFERIOR
+// eliminar texto superior/inferior
 const noTopText = document.getElementById("no-top-text");
 const noBottomText = document.getElementById("no-bottom-text");
 
@@ -207,7 +205,7 @@ noBottomText.oninput = () => {
   }
 };
 
-//CAMBIO DE FUENTES
+// cambiar fuentes
 
 const selectFonts = document.getElementById("font-types");
 
@@ -243,7 +241,7 @@ const changeFonts = (event) => {
 };
 selectFonts.addEventListener("change", changeFonts);
 
-//TAMAÑO DE LA LETRA
+// tamaño de la letra
 const letterSize = document.getElementById("letter-size");
 
 letterSize.oninput = () => {
@@ -251,7 +249,7 @@ letterSize.oninput = () => {
   bottomText.style.fontSize = letterSize.value + "px";
 };
 
-//ALINEACIÓN DEL PARRAFO
+// alineacion del parrafo
 
 const leftAlignment = document.getElementById("left-button");
 const centerAlignment = document.getElementById("center-button");
@@ -281,7 +279,7 @@ let inputColorText = document.getElementById("input-color-text");
 let spanColorText = document.querySelector(".span-color-text");
 let spanBackgroundText = document.querySelector(".span-background-text");
 
-//APLICAR CODIGO DE COLOR Y FONDO EN SPAN
+// aplicar codigo de color
 const nameCodeOfColor = (event) => {
   spanColorText.textContent = event.target.value;
 };
@@ -368,16 +366,3 @@ leadingText.oninput = () => {
 
 
 
-
-
-//MediaQuery//
-// const resizeWindow = () => {
-  // if(body.getBoundingClientRect().width > 1300) {
-    // apartadoImagen.classList.toggle("oculto")
-    // apartadoTexto.classList.toggle("oculto")
-  // } else {
-    // apartadoImagen.style.display = "none";
-    // apartadoTexto.style.display = "none";
-  // }
-// }
-// window.addEventListener("resize", resizeWindow)
