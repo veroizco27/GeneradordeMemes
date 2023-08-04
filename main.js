@@ -59,9 +59,7 @@ const changeButtonMode = () => {
 buttonMode.addEventListener("click", changeButtonMode);
 
 //para aplicar al formulario imagen
-
 // url 
-
 const urlInput = document.getElementById("url-input");
 const memeImg = document.getElementById("image-meme");
 
@@ -70,6 +68,8 @@ urlInput.addEventListener("input", () => changeBackground());
 const changeBackground = () => {
   memeImg.style.backgroundImage = `url('${urlInput.value}')`;
 };
+
+
 
 // buton color y texto fondos 
 
@@ -160,7 +160,7 @@ botonFilters.onclick = (event) => {
   memeImg.style.filter = "none";
 };
 
-// funcion para descarar meme
+// funcion para descargar meme
 
 const downloadButton = document.getElementById("download-meme");
 const meme = document.getElementById("meme-container");
